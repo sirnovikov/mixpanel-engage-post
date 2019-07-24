@@ -1,18 +1,18 @@
 {
-  "name": "mixpanel-engage-post",
-  "description": "Command-line tool to post data to the Mixpanel Engage API for People Data.",
+  "name": "mixpanel-groups-post",
+  "description": "Command-line tool to post data to the Mixpanel Groups API.",
   "version": "0.2.1",
-  "homepage": "https://github.com/stpe/mixpanel-engage-post",
+  "homepage": "https://github.com/stpe/mixpanel-groups-post",
   "author": "Stefan Pettersson",
   "repository": {
     "type": "git",
-    "url": "git://github.com/stpe/mixpanel-engage-post.git"
+    "url": "git://github.com/stpe/mixpanel-groups-post.git"
   },
   "bugs": {
-    "url": "https://github.com/stpe/mixpanel-engage-post/issues"
+    "url": "https://github.com/stpe/mixpanel-groups-post/issues"
   },
   "scripts": {
-    "start": "node engagepost.js"
+    "start": "node groupspost.js"
   },
   "dependencies": {
     "cli-color": "1.1.0",
@@ -27,6 +27,6 @@
   "license": "MIT",
   "preferGlobal": true,
   "bin": {
-    "engagepost": "engagepost.js"
+    "groupspost": "groupspost.js"
   }
 }

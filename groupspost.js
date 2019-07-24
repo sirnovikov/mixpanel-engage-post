@@ -45,7 +45,7 @@ var yargs = require('yargs')
         alias: 'help',
         describe: 'Help'
     })
-    .epilogue('Note that Mixpanel API key/secret/token may also be set using environment variables. For more information, see https://github.com/stpe/mixpanel-engage-post');
+    .epilogue('Note that Mixpanel API key/secret/token may also be set using environment variables. For more information, see https://github.com/stpe/mixpanel-group-post');
 
 if (!process.env.MIXPANEL_API_KEY) {
     yargs.demand(['k']);
@@ -82,12 +82,12 @@ stdin(function(input) {
         exit(1);
     }
 
-    postEngageApi(data);
+    postGroupsApi(data);
 });
 
 // ------------------------------------------
 
-function postEngageApi(batch) {
+function postGroupsApi(batch) {
     var sendBatch = function() {
         if (batch.length === 0) {
             // no more to send!
@@ -95,7 +95,7 @@ function postEngageApi(batch) {
         }
 
         // get new url for each request to avoid possible signature expiration
-        var url = getUrl("engage", { verbose: 1, ignore_time: true, ip: 0 });
+        var url = getUrl("groups", { verbose: 1, ignore_time: true, ip: 0 });
 
         // prepare chunk of data to send
         var chunk = batch.splice(0, BATCH_SIZE);
@@ -108,7 +108,7 @@ function postEngageApi(batch) {
         });
 
         var data = {
-            data: new Buffer(JSON.stringify(chunk)).toString('base64')
+            data: new Buffer.from(JSON.stringify(chunk)).toString('base64')
         };
 
         needle.post(url, data, function(err, resp, data) {
